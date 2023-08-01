@@ -26,6 +26,7 @@ const FirstTime = () => {
     const jsonData = {
       name,
       idNumber,
+      ward : "",
       working,
       nextOfKin: {
         name: nextOfKinName,
@@ -36,7 +37,10 @@ const FirstTime = () => {
     const url = 'http://localhost:4001/saveuser';
     const response = await postData(url, jsonData);
     console.log("response: ", response); // log the response from the server
-    window.location.href = '/ListOfWards';
+    // Convert the jsonData to a string and encode it for URL
+    const dataParam = encodeURIComponent(JSON.stringify(jsonData));
+    // Navigate to the ListOfWards page with the form data as URL parameters
+    window.location.href = `/ListOfWards?data=${dataParam}`;
   };
 
   // Handlers for individual input fields

@@ -77,7 +77,7 @@ func saveStructToFirebaseStorage(structData User, filename string) error {
 		// Add your Firebase project's configuration here
 		StorageBucket: "music-service-8884l.appspot.com",
 	}
-	firebaseApp, err := firebase.NewApp(ctx, firebaseConfig, option.WithCredentialsFile("/Users/musawenkosingwenya/Desktop/Work/Side Projects/med/music-service-8884l-firebase-adminsdk-ebay8-0f3bab4175.json"))
+	firebaseApp, err := firebase.NewApp(ctx, firebaseConfig, option.WithCredentialsFile("/Users/musawenkosingwenya/Desktop/Work/Side Projects/med/MedWeb/music-service-8884l-firebase-adminsdk-ebay8-0f3bab4175.json"))
 	if err != nil {
 		return err
 	}
