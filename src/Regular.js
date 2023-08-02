@@ -3,49 +3,72 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
 const Regular = () => {
-    const [input1Value, setInput1Value] = useState('');
-    const [input2Value, setInput2Value] = useState('');
-    const [input3Value, setInput3Value] = useState('');
+    const [name, setName] = useState(''); 
+    const [iDNumber, setIdNumber] = useState(''); 
+    const [address, setAddress] = useState('');
 
-    const handleInput1Change = (event) => {
-        setInput1Value(event.target.value);
+
+    const handleNameChange = (event) => {
+        setName(event.target.value);
     };
 
-    const handleInput2Change = (event) => {
-        setInput2Value(event.target.value);
+    const handleIdNumberChange = (event) => {
+        setIdNumber(event.target.value);
     };
 
-    const handleInput3Change = (event) => {
-        setInput3Value(event.target.value);
+    const handleAddressChange = (event) => {
+        setAddress(event.target.value);
     };
 
-    const postData = async (url, data) => {
+
+    const getData = async (url) => {
         const response = await fetch(url, {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
         });
+
+        if (!response.ok) {
+            throw new Error('Data not found');
+        }
+
         return response.json();
     };
 
-    const handleSubmit = (event) => {
-        console.log('Name:', input1Value);
-        console.log('ID Number:', input2Value);
-        console.log('Address:', input3Value);
-
-
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const url = 'http://localhost:4001/saveuser?';
-        const data = new FormData(event.currentTarget);
-        const jsonData = Object.fromEntries(data.entries());
-        var jsonDataStr = JSON.stringify(jsonData)
-        var ENDPOINT = url + "data=" + jsonDataStr
-        const response = postData(ENDPOINT, jsonData);
-        console.log("response : ", response); // log the response from the server
-        window.location.href = '/login';
+    
+        const jsonData = {
+            name: name,
+            idNumber: iDNumber,
+            address: address,
+        };
+    
+        const url = 'http://localhost:4001/getuser?';
+        const jsonDataStr = JSON.stringify(jsonData);
+        const endpoint = url + "data=" + encodeURIComponent(jsonDataStr);
+    
+        try {
+            const response = await getData(endpoint);
+            console.log("response : ", response); // log the response from the server
+            const jsonString = JSON.stringify(response);
+            window.location.href = '/home?data=' + encodeURIComponent(jsonString);
+        } catch (error) {
+            console.error('Error:', error.message);
+            alert('User Does Not Exist. Please try signing up.');
+            return;
+        }
+    
+        // logging the details
+        console.log({
+            name: name,
+            idNumber: iDNumber,
+            address: address,
+        });
     };
+    
+    
 
     const containerStyle = {
         backgroundColor: 'purple',
@@ -67,8 +90,8 @@ const Regular = () => {
             <h1>Enter Your Name</h1>
             <TextField
                 label="Enter Your Name"
-                value={input1Value}
-                onChange={handleInput1Change}
+                value={name}
+                onChange={handleNameChange}
                 variant="outlined"
                 color="primary"
                 style={{ width: '50%' }}
@@ -76,8 +99,8 @@ const Regular = () => {
             <h1>Enter Your ID Number</h1>
             <TextField
                 label="Enter Your ID Number"
-                value={input2Value}
-                onChange={handleInput2Change}
+                value={iDNumber}
+                onChange={handleIdNumberChange}
                 variant="outlined"
                 color="primary"
                 style={{ width: '50%' }}
@@ -85,8 +108,8 @@ const Regular = () => {
             <h1>Enter Your Address</h1>
             <TextField
                 label="Enter Your Address"
-                value={input3Value}
-                onChange={handleInput3Change}
+                value={address}
+                onChange={handleAddressChange}
                 variant="outlined"
                 color="primary"
                 style={{ width: '50%' }}

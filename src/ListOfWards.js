@@ -81,7 +81,7 @@ const ListOfWards = () => {
                 idNumber: data.idNumber,
                 working: data.working,
                 NextOfKinName: data.nextOfKin.name,
-                NextOfKinName: data.nextOfKin.phoneNumber,
+                NextOfKinNumber: data.nextOfKin.phoneNumber,
                 ward: otherInput, // Assuming that the custom ward value should be sent to the server
             };
             const url = 'http://localhost:4001/saveuser'; // Update the URL with your server endpoint
@@ -99,7 +99,7 @@ const ListOfWards = () => {
                 idNumber: data.idNumber,
                 working: data.working,
                 NextOfKinName: data.nextOfKin.name,
-                NextOfKinName: data.nextOfKin.phoneNumber,
+                NextOfKinNumber: data.nextOfKin.phoneNumber,
                 ward: selectedOption, // Assuming that the custom ward value should be sent to the server
             };
             const url = 'http://localhost:4001/saveuser'; // Update the URL with your server endpoint
