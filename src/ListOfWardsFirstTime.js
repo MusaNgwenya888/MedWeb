@@ -80,8 +80,8 @@ const ListOfWardsFirstTime = () => {
                 name: data.name,
                 idNumber: data.idNumber,
                 working: data.working,
-                NextOfKinName: data.nextOfKin.name,
-                NextOfKinNumber: data.nextOfKin.phoneNumber,
+                NextOfKinName: data.nextOfKinName,
+                NextOfKinNumber: data.nextOfKinPhoneNumber,
                 ward: otherInput, // Assuming that the custom ward value should be sent to the server
             };
             const url = 'http://localhost:4001/saveuser'; // Update the URL with your server endpoint

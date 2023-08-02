@@ -58,7 +58,7 @@ const Receipt = () => {
         <p>Receipt Number: {receiptNumber}</p>
         <p>Ward: {data && data.ward}</p> 
         <br />
-        <p>Ward Updated Successfull</p>
+        <p>Ward Updated Successfully!</p>
       </div>
       <br />
       <Button variant="contained" style={buttonStyle} onClick={handleGetStarted}>
