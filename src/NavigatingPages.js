@@ -5,7 +5,9 @@ import App from './App';
 import QueryUser from './QueryUser';
 import FirstTime from './FirstTime';
 import Regular from './Regular';
-import ListOfWards from './ListOfWards';
+import ListOfWardsFirstTime from './ListOfWardsFirstTime';
+import RecieptFirstTime from './RecieptFirstTime'
+import ListOfWards from './ListOfWards'
 import Receipt from './Receipt'
 
 function NavigatingPages() {
@@ -15,8 +17,10 @@ function NavigatingPages() {
       <Route path="/QueryUser" element={<QueryUser />} /> 
       <Route path="/FirstTime" element={<FirstTime />} />
       <Route path="/Regular" element={<Regular />} /> 
-      <Route path="/ListOfWards" element={<ListOfWards />} /> Receipt
-      <Route path="/Reciept" element={<Receipt />} />
+      <Route path="/ListOfWardsFirstTime" element={<ListOfWardsFirstTime />} />
+      <Route path="/ListOfWards" element={<ListOfWards />} />
+      <Route path="/RecieptFirstTime" element={<RecieptFirstTime />} /> 
+      <Route path="/Receipt" element={<Receipt />} />
     </Routes>
   );
 }

@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 
-const Receipt = () => {
+const RecieptFirstTime = () => {
     const [ data, setData ] = useState(null)
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -56,9 +56,11 @@ const Receipt = () => {
         <h1 style={h1Style}>Here is Your Receipt :</h1>
       <div style={receiptContainerStyle}>
         <p>Receipt Number: {receiptNumber}</p>
-        <p>Ward: {data && data.ward}</p> 
-        <br />
-        <p>Ward Updated Successfull</p>
+        <p>Name: {data && data.name}</p>
+        <p>ID Number: {data && data.idNumber}</p>
+        <p>Ward: {data && data.ward}</p>
+        <br/>
+        <p>Thank You!</p>
       </div>
       <br />
       <Button variant="contained" style={buttonStyle} onClick={handleGetStarted}>
@@ -68,4 +70,4 @@ const Receipt = () => {
   );
 };
 
-export default Receipt;
+export default RecieptFirstTime;

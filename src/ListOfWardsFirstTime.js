@@ -2,9 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import Button from '@mui/material/Button';
 
-const ListOfWards = () => {
+const ListOfWardsFirstTime = () => {
     const [selectedOption, setSelectedOption] = useState('');
     const [otherInput, setOtherInput] = useState('');
+    const [data, setData] = useState(null)
+
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const dataParam = searchParams.get('data');
+
+    useEffect(() => {
+        if (dataParam) {
+            const jsonData = JSON.parse(decodeURIComponent(dataParam));
+            // Use the jsonData here if needed
+            setData(jsonData)
+            console.log('Received Data:', jsonData);
+        }
+    }, [dataParam]);
+
 
     const containerStyle = {
         backgroundColor: 'purple',
@@ -62,6 +77,11 @@ const ListOfWards = () => {
             // Handle the submitted "Other" value here, e.g., send to server or use it in the app
             console.log('User selected "Other" with value:', otherInput);
             const jsonData = {
+                name: data.name,
+                idNumber: data.idNumber,
+                working: data.working,
+                NextOfKinName: data.nextOfKin.name,
+                NextOfKinNumber: data.nextOfKin.phoneNumber,
                 ward: otherInput, // Assuming that the custom ward value should be sent to the server
             };
             const url = 'http://localhost:4001/saveuser'; // Update the URL with your server endpoint
@@ -70,11 +90,16 @@ const ListOfWards = () => {
             // Convert the jsonData to a string and encode it for URL
             const dataParam = encodeURIComponent(JSON.stringify(jsonData));
             // Navigate to the ListOfWards page with the form data as URL parameters
-            window.location.href = `/Receipt?data=${dataParam}`;
+            window.location.href = `/RecieptFirstTime?data=${dataParam}`;
         } else {
             // Handle the selected ward here, e.g., send to server or use it in the app
             console.log('User selected:', selectedOption);
             const jsonData = {
+                name: data.name,
+                idNumber: data.idNumber,
+                working: data.working,
+                NextOfKinName: data.nextOfKinName,
+                NextOfKinNumber: data.nextOfKinPhoneNumber,
                 ward: selectedOption, // Assuming that the custom ward value should be sent to the server
             };
             const url = 'http://localhost:4001/saveuser'; // Update the URL with your server endpoint
@@ -83,7 +108,7 @@ const ListOfWards = () => {
             // Convert the jsonData to a string and encode it for URL
             const dataParam = encodeURIComponent(JSON.stringify(jsonData));
             // Navigate to the ListOfWards page with the form data as URL parameters
-            window.location.href = `/Receipt?data=${dataParam}`;
+            window.location.href = `/RecieptFirstTime?data=${dataParam}`;
         }
     };
 
@@ -134,4 +159,4 @@ const ListOfWards = () => {
     );
 };
 
-export default ListOfWards;
+export default ListOfWardsFirstTime;

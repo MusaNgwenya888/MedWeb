@@ -28,10 +28,8 @@ const FirstTime = () => {
       idNumber,
       ward : "",
       working,
-      nextOfKin: {
-        name: nextOfKinName,
-        phoneNumber: nextOfKinPhoneNumber,
-      },
+      nextOfKinName,
+      nextOfKinPhoneNumber
     };
   
     const url = 'http://localhost:4001/saveuser';
@@ -40,7 +38,7 @@ const FirstTime = () => {
     // Convert the jsonData to a string and encode it for URL
     const dataParam = encodeURIComponent(JSON.stringify(jsonData));
     // Navigate to the ListOfWards page with the form data as URL parameters
-    window.location.href = `/ListOfWards?data=${dataParam}`;
+    window.location.href = `/ListOfWardsFirstTime?data=${dataParam}`;
   };
 
   // Handlers for individual input fields
