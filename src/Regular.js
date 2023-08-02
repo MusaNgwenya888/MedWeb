@@ -53,7 +53,7 @@ const Regular = () => {
             const response = await getData(endpoint);
             console.log("response : ", response); // log the response from the server
             const jsonString = JSON.stringify(response);
-            window.location.href = '/home?data=' + encodeURIComponent(jsonString);
+            window.location.href = '/ListOfWards?data=' + encodeURIComponent(jsonString);
         } catch (error) {
             console.error('Error:', error.message);
             alert('User Does Not Exist. Please try signing up.');
